@@ -23,6 +23,11 @@ const user = new Schema({
         type:String,
         required:true,
         default:'Inactiva'
+    },
+    role:{
+        type:String,
+        required:true,
+        default:"Student"
     }
 
 });
