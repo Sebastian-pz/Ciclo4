@@ -15,6 +15,7 @@ const typeDefs = gql`
         title:String
         description:String
         leader:String
+        members:[Users]
     }
 
     type Query{

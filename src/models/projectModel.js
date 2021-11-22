@@ -14,9 +14,10 @@ const project = new Schema({
         required:true,
         unique : true
     },
-    members:{
-        type: [String],
-    },
+    members:[{
+        ref:"user",
+        type: Schema.Types.ObjectId
+    }],
     startDate:{
         type: Date,
         default: new Date()
@@ -25,6 +26,10 @@ const project = new Schema({
         type: Boolean,
         default: true
     }
-});
+},
+    {
+        timestamps:true
+    }
+);
 
 module.exports = model('project', project);
