@@ -1,4 +1,7 @@
 const User = require('../models/userModel');
+const aes256 = require('aes256');
+
+const encryptKey = 'Clave_para_aes256';
 
 const users = async ()=> await User.find({});
 const getUser = async (id) => await User.findOne({id});
@@ -9,7 +12,7 @@ const deleteUser = () => User.deleteOne({id});
 const createUser = (user) => {
     const {password} = user;
     const newUser = new User(user);
-    const encryptedPassword = aes256.encrypt(key, password);
+    const encryptedPassword = aes256.encrypt(encryptKey, password);
     newUser.password = encryptedPassword;
     return newUser.save()
         .then (u => "user created")
@@ -21,5 +24,6 @@ module.exports = {
     getUser,
     activateUser,
     deleteUser,
-    createUser
+    createUser,
+    encryptKey
 }

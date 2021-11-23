@@ -1,5 +1,3 @@
-const aes256 = require('aes256');
-
 const {
     projects,
     getProject,
@@ -17,11 +15,6 @@ const {
     createUser
 } = require('../service/user.service')
 
-
-
-
-const key = 'Clave_para_aes256';
-
 const resolvers = {
     Query: {
         users: async ()=> users(),
@@ -30,7 +23,6 @@ const resolvers = {
         projects: async () => projects(),
         getProject: async (parent, args, context, info) => getProject(args.title)
     },
-
 
     Mutation:{
         createUser: (parent, args, context, info) => createUser(args.user),
