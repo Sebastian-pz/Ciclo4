@@ -1,18 +1,28 @@
 const {Schema, model} = require('mongoose');
 
 const project = new Schema({
+    id:{
+        type:String,
+        unique: true,
+        required:true
+    },
     title: {
         type: String,
         unique : true,
         required : true
     },
-    description: {
-        type: String
+    general_objective:{
+        type:String
+    },
+    specific_objectives:{
+        type:String
+    },
+    budget:{
+        type:Number
     },
     leader:{
         type: String,
-        required:true,
-        unique : true
+        required:true
     },
     members:[{
         ref:"user",
@@ -24,7 +34,7 @@ const project = new Schema({
     },
     isActive:{
         type: Boolean,
-        default: true
+        default: false
     }
 },
     {
