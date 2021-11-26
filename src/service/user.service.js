@@ -6,7 +6,7 @@ const encryptKey = 'Clave_para_aes256';
 const users = async ()=> await User.find({});
 const getUser = async (id) => await User.findOne({id});
 const activateUser = (id) => User.updateOne({id},{accountStatus:"Activa"});
-const deleteUser = () => User.deleteOne({id});
+const deleteUser = (id) => User.deleteOne({id});
 
 
 const createUser = (user) => {

@@ -5,7 +5,7 @@ const {
     stopProject,
     resumeProject,
     addUserToProject
-} = requiere('../service/project.service')
+} = require('../service/project.service')
 
 const {
     users,

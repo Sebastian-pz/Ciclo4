@@ -13,15 +13,17 @@ const typeDefs = gql`
 
     type Project{
         title:String
-        description:String
+        general_objective:String
+        specific_objectives:String
         leader:String
-        members:[Users]
+        members:[User]
     }
 
     type Query{
         users:[User]
-        user(id:Int):User
+        getUser(id:Int):User
         projects:[Project]
+        getProject(title:String):Project
     }
 
     input UserInput{
@@ -34,7 +36,9 @@ const typeDefs = gql`
 
     input projectInput{
         title:String
-        description:String
+        general_objective:String
+        specific_objectives:String
+        budget:Int
         leader:String
         members: [String]
     }

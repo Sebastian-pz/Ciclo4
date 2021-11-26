@@ -1,11 +1,13 @@
 const Project = require('../models/projectModel');
 const User = require('../models/userModel');
+const {v4: uuidv4} = require('uuid')
 
 const projects = async () => await Project.find({}).populate("members")
 const getProject = async (title) => await Project.findOne({title})
 
 const createProject = (project) => {
     const newProject = new Project(project);
+    newProject.id=uuidv4()
     return newProject.save()
         .then(u => "Project: Created")
         .catch(err => "Project: Error")
