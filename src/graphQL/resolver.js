@@ -12,7 +12,8 @@ const {
     getUser,
     activateUser,
     deleteUser,
-    createUser
+    createUser,
+    updateProfile
 } = require('../service/user.service')
 
 const resolvers = {
@@ -28,6 +29,7 @@ const resolvers = {
         createUser: (parent, args, context, info) => createUser(args.user),
         activateUser: async (parent, args, context, info) => activateUser(args.id),
         deleteUser: async (parent, args, context, info) => deleteUser(args.id),
+        updateProfile: async(parent, args, context, info) => updateProfile(args.id, args.newUserData),
 
         createProject: (parent, args, context, info) => createProject(args.project),
         stopProject: async (parent, args, context, info) => stopProject(args.title),
