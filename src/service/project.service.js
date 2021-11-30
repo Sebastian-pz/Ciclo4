@@ -12,9 +12,9 @@ const createProject = (project) => {
         .then(u => "Project created")
 
 }
-const stopProject = (title) => {
-    return Project.updateOne({title}, {$set:{isActive:false}})
-        .then(u => "Project: Stopped")
+const stopProject = async (title) => {
+    const u = await Project.updateOne({ title }, { $set: { isActive: false } });
+    return "Project: Stopped";
 
 }
 
