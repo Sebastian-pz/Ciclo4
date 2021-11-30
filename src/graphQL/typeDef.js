@@ -40,7 +40,7 @@ const typeDefs = gql`
         specific_objectives:String
         budget:Int
         leader:String
-        members: [String]
+
     }
 
     type Mutation{
@@ -50,7 +50,7 @@ const typeDefs = gql`
         deleteUser(id:Int):String
         stopProject(title:String):String
         resumeProject(title:String):String
-
+        addUserToProject(id:Int, title:String):String
     }
     `
 
