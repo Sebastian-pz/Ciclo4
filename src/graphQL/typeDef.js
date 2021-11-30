@@ -43,10 +43,17 @@ const typeDefs = gql`
 
     }
 
+    input userUpdateInput{
+        name:String
+        email:String
+        password:String
+    }
+
     type Mutation{
         createUser(user:UserInput):String
         createProject(project:projectInput):String
         activateUser(id:Int):String
+        updateProfile(id:Int, newUserData:userUpdateInput):String
         deleteUser(id:Int):String
         stopProject(title:String):String
         resumeProject(title:String):String

@@ -19,11 +19,22 @@ const createUser = (user) => {
         .catch(err => "Failed")
 }
 
+const updateProfile = async (id, newUserData) => {
+    const passwordUn = newUserData.password;
+    const encryptedPassword = aes256.encrypt(encryptKey, passwordUn)
+    return(
+    User.updateOne({id}, {email: newUserData.email, password:encryptedPassword, name:newUserData.name})
+        .then(u => "User updated")
+        .catch(err => "Error")
+    )
+}
+
 module.exports = {
     users,
     getUser,
     activateUser,
     deleteUser,
     createUser,
-    encryptKey
+    encryptKey,
+    updateProfile
 }
