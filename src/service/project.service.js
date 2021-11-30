@@ -9,19 +9,22 @@ const createProject = (project) => {
     const newProject = new Project(project);
     newProject.id=uuidv4()
     return newProject.save()
-        .then(u => "Project: Created")
-        .catch(err => "Project: Error")
+        .then(u => "Project created")
+
 }
 const stopProject = (title) => {
     return Project.updateOne({title}, {$set:{isActive:false}})
         .then(u => "Project: Stopped")
-        .catch(err => "Project: Error")
+
 }
 
-const resumeProject = (title) => {
-    return Project.updateOne({title}, {$set:{isActive:true}})
-        .then(u => "Project: Resumed")
-        .catch(err => "Project: Error")
+const resumeProject = async (title) => {
+    try {
+        const u = await Project.updateOne({ title }, { $set: { isActive: true } });
+        return "Project: Resumed";
+    } catch (err) {
+        return "Project: Error";
+    }
 }
 
 

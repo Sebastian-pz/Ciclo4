@@ -35,6 +35,10 @@ const project = new Schema({
     isActive:{
         type: Boolean,
         default: false
+    },
+    projectStatus:{
+        type:String,
+        default: "null"
     }
 },
     {
