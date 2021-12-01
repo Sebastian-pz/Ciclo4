@@ -23,6 +23,7 @@ const singin = async (request, response) => {
         }
 
         const token = jwt.sign({
+            id: user.id,
             role: user.role
         }, jwtKey, {expiresIn: 60*60*2})
 
