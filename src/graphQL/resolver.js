@@ -4,7 +4,9 @@ const {
     createProject,
     stopProject,
     resumeProject,
-    addUserToProject
+    addUserToProject,
+    addprogress,
+    popLastProgress
 } = require('../service/project.service')
 
 const {
@@ -13,12 +15,14 @@ const {
     activateUser,
     deleteUser,
     createUser,
-    updateProfile
+    updateProfile,
+    getInactiveUser
 } = require('../service/user.service')
 
 const resolvers = {
     Query: {
         users: async ()=> users(),
+        getInactiveUser: async ()=> getInactiveUser(),
         getUser: async (parent, args, context, info) => getUser(args.id),
 
         projects: async () => projects(),
@@ -33,7 +37,9 @@ const resolvers = {
 
         createProject: (parent, args, context, info) => createProject(args.project),
         stopProject: async (parent, args, context, info) => stopProject(args.title),
-        resumeProject: async (parent, args, context, info) => resumeProject(args.title)
+        resumeProject: async (parent, args, context, info) => resumeProject(args.title),
+        addprogress: async (parent, args, context, info) => addprogress(args.id, args.progress),
+        popLastProgress: async (parent, args, context, info) => popLastProgress(args.id)
     }
 }
 
