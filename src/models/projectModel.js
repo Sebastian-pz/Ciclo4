@@ -17,12 +17,17 @@ const project = new Schema({
     specific_objectives:{
         type:String
     },
+    progress:[{
+        type:String,
+        default:"Inicio del proyecto"
+    }],
     budget:{
         type:Number
     },
     leader:{
         type: String,
-        required:true
+        required:true,
+        unique:false
     },
     members:[{
         ref:"user",

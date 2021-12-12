@@ -27,6 +27,24 @@ const resumeProject = async (title) => {
     }
 }
 
+const addprogress = async (id, progress) => {
+    try {
+        const u = await Project.updateOne({id}, {$push: {progress}})
+            .then(r => "Progreso añadido")
+    } catch (err) {
+        return console.log(err)
+    }
+}
+
+const popLastProgress = async (id) => {
+    try {
+        const u = await Project.updateOne({id}, {$pop: {progress:1}})
+            .then(r => "Progreso deshecho")
+    } catch (err) {
+        return console.log(err)
+    }
+}
+
 
 const addUserToProject = async(id, titleProject) => {
     const user = await User.findOne({id})
@@ -54,5 +72,7 @@ module.exports = {
     createProject,
     stopProject,
     resumeProject,
-    addUserToProject
+    addUserToProject,
+    addprogress,
+    popLastProgress
 }
