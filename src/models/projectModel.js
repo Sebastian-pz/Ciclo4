@@ -11,6 +11,10 @@ const project = new Schema({
         unique : true,
         required : true
     },
+    description: {
+        type:String,
+        default: "Aquí va la descripción del proyecto"
+    },
     general_objective:{
         type:String
     },
@@ -19,7 +23,7 @@ const project = new Schema({
     },
     progress:[{
         type:String,
-        default:"Inicio del proyecto"
+        default:["Inicio del proyecto",]
     }],
     budget:{
         type:Number

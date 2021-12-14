@@ -13,17 +13,20 @@ const typeDefs = gql`
 
     type Project{
         title:String
+        id:String
+        description:String
         general_objective:String
         specific_objectives:String
+        progress:[String]
         leader:String
-        members:[User]
+        members:[String]
     }
 
     type Query{
         users:[User]
         getUser(id:String):User
         projects:[Project]
-        getProject(title:String):Project
+        getProject(id:String):Project
         getInactiveUser:[User]
     }
 
