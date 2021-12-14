@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const {v4: uuidv4} = require('uuid')
 
 const projects = async () => await Project.find({}).populate("members")
-const getProject = async (title) => await Project.findOne({title})
+const getProject = async (id) => await Project.findOne({id})
 
 const createProject = (project) => {
     const newProject = new Project(project);

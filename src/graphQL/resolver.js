@@ -26,7 +26,7 @@ const resolvers = {
         getUser: async (parent, args, context, info) => getUser(args.id),
 
         projects: async () => projects(),
-        getProject: async (parent, args, context, info) => getProject(args.title)
+        getProject: async (parent, args, context, info) => getProject(args.id)
     },
 
     Mutation:{
