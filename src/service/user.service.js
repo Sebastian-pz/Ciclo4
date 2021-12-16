@@ -1,5 +1,7 @@
 const User = require('../models/userModel');
 const aes256 = require('aes256');
+const jwt = require('jsonwebtoken')
+const jwtClave = "Estanoeslaclave123"
 
 const encryptKey = 'Clave_para_aes256';
 
@@ -27,7 +29,38 @@ const activateUser = async (id) => {
     } else {
         return "Usuario no existe"
     }
-        
+}
+
+const Auth = async (email, password) => {
+    try {
+        const user = await User.findOne({email})
+        if(!user){
+            return {
+                status: 401
+            }
+        }
+        if(user.accountStatus !== 'Activa'){
+            return {
+                status: 405
+            }
+        }
+        const dpass = aes256.decrypt(encryptKey, user.password)
+        if(password != dpass){
+            return {
+                status: 401
+            }
+        }
+        const token = jwt.sign({
+            role: user.role,
+            id: user.id
+        }, jwtClave, {expiresIn: 60*60*2})
+        return {
+            status: 200,
+            jwt:token
+        }
+    } catch(error){
+        console.log(error)
+    }
 }
 
 const createUser = (user) => {
@@ -58,5 +91,6 @@ module.exports = {
     createUser,
     encryptKey,
     updateProfile,
-    getInactiveUser
+    getInactiveUser,
+    Auth
 }

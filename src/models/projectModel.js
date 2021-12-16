@@ -34,8 +34,11 @@ const project = new Schema({
         unique:false
     },
     members:[{
-        ref:"user",
-        type: Schema.Types.ObjectId
+        type:String
+    }],
+    pending_approval:[{
+        type:String,
+        default:['1']
     }],
     startDate:{
         type: Date,
