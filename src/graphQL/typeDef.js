@@ -13,6 +13,7 @@ const typeDefs = gql`
 
     type Project{
         title:String
+        budget:Int
         id:String
         description:String
         general_objective:String
@@ -20,6 +21,9 @@ const typeDefs = gql`
         progress:[String]
         leader:String
         members:[String]
+        pending_approval:[String]
+        isActive:Boolean
+        _id:String
     }
 
     type Query{
@@ -27,7 +31,10 @@ const typeDefs = gql`
         getUser(id:String):User
         projects:[Project]
         getProject(id:String):Project
+        getActiveProjects:[Project]
+        getInactiveProjects:[Project]
         getInactiveUser:[User]
+        myProjects(leader:String):[Project]
     }
 
     input UserInput{
@@ -47,23 +54,41 @@ const typeDefs = gql`
 
     }
 
+    type Auth {
+        jwt:String
+        status:Int
+    }
+
     input userUpdateInput{
         name:String
         email:String
         password:String
     }
 
+    input projectUpdateInput{
+        title:String
+        general_objective:String
+        specific_objectives:String
+        description:String
+    }
+
     type Mutation{
         createUser(user:UserInput):String
-        createProject(project:projectInput):String
+        authenticate(email:String, password:String):Auth
         activateUser(id:String):String
         updateProfile(id:String, newUserData:userUpdateInput):String
         deleteUser(id:String):String
-        stopProject(title:String):String
+
+        updateProject(id:String, newProjectData:projectUpdateInput):String
+        createProject(project:projectInput):String
+        stopProject(id:String):String
         resumeProject(title:String):String
         addUserToProject(id:String, title:String):String
         addprogress(id:String, progress:String):String
         popLastProgress(id:String):String
+        activateProject(id:String):String
+        registerToProject(id:String, user:String):String
+
     }
     `
 
