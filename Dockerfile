@@ -1,6 +1,6 @@
-FROM node:12
-WORKDIR /app
+FROM node
+WORKDIR /investigacion
 COPY package*.json ./
 RUN npm i
-COPY ..
-CMD ["node", "./index.js"]
+COPY . ./
+CMD [ "npm", "start" ]
