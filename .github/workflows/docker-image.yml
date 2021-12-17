@@ -18,4 +18,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/back-c4
     - name: Push to hub
-      run: docker push ${{secret.DOCKER_USERNAME}}/back-c4
+      run: docker push ${{secrets.DOCKER_USERNAME}}/back-c4
