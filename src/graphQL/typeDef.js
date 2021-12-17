@@ -35,6 +35,7 @@ const typeDefs = gql`
         getInactiveProjects:[Project]
         getInactiveUser:[User]
         myProjects(leader:String):[Project]
+        getName(id:String):String
     }
 
     input UserInput{
@@ -88,6 +89,8 @@ const typeDefs = gql`
         popLastProgress(id:String):String
         activateProject(id:String):String
         registerToProject(id:String, user:String):String
+        acceptUser(id:String, user:String):String
+        declineUser(id:String, user:String):String
 
     }
     `

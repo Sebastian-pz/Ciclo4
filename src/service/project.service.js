@@ -11,9 +11,27 @@ const myProjects = async (leader) => await Project.find({leader})
 const createProject = (project) => {
     const newProject = new Project(project);
     newProject.id=uuidv4()
+    newProject.members.push(newProject.leader)
     return newProject.save()
         .then(u => "Project created")
+}
 
+const acceptUser = async (id, user) => {
+    try {
+        const u = await Project.updateOne({id}, {$pull: {pending_approval:user}})
+        const a = await Project.updateOne({id}, {$push: {members:user}})
+        .then(r => "Ya es miembro")
+    }   catch(err) {
+        return console.log(err)
+    }
+}
+const declineUser = async (id, user) => {
+    try {
+        const u = await Project.updateOne({id}, {$pull: {pending_approval:user}})
+        .then(r => "Se eliminó la solicitud")
+    }   catch(err) {
+        return console.log(err)
+    }
 }
 
 const activateProject = async (id) => {
@@ -55,7 +73,7 @@ const addprogress = async (id, progress) => {
 
 const registerToProject = async (id, user) => {
     try {
-        const u = await Project.updateOne({id}, {$push: {Pending_approval:user}})
+        const u = await Project.updateOne({id}, {$push: {pending_approval:user}})
             .then(r => "Inscripción realizada")
     } catch(err) {
         return console.log(err)
@@ -106,5 +124,7 @@ module.exports = {
     getInactiveProjects,
     activateProject,
     myProjects,
-    registerToProject
+    registerToProject,
+    declineUser,
+    acceptUser
 }

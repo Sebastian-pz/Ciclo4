@@ -7,17 +7,15 @@ const encryptKey = 'Clave_para_aes256';
 
 const users = async ()=> await User.find({});
 const getUser = async (id) => await User.findOne({id});
-/*
-const activateUser = (id) => User.updateOne({id},{accountStatus:"Activa"})
-    .then(u => "Usuario activado")
-    .catch(e => "Error")
+const getName = async (id) => {
+    let user = await User.findOne({id})
+    return user.name
+}
 
-*/
 const deleteUser = (id) => User.deleteOne({id})
     .then(u => "Usuario eliminado")
     .catch(err => "Error en la eliminación")
 const getInactiveUser = async () => await User.find({accountStatus:"Inactiva"});
-
 
 const activateUser = async (id) => {
     let user = await User.findOne({id})
@@ -92,5 +90,6 @@ module.exports = {
     encryptKey,
     updateProfile,
     getInactiveUser,
-    Auth
+    Auth,
+    getName
 }
