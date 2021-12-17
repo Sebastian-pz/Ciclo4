@@ -7,12 +7,11 @@ const {validateToken, admin, student} = require('./src/middleware/authjwt')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const { request } = require('express')
+
 const jwt = require('jsonwebtoken')
-
 const jwtClave = "Estanoeslaclave123"
-
+const api = express();
 const startServer = async () => {
-    const api = express();
     const apollo = new ApolloServer(
         {
             typeDefs,
@@ -44,6 +43,13 @@ const startServer = async () => {
     api.get('/api/dashboard/student', [validateToken, student], (request, response) => {
         response.json("Soy el dashboard de estudiante")
     })
+
+    api.get("/health-check", (req, resp) => {
+        resp.json('ok')
+    })
+
     api.listen('3001', () => console.log('Server started'))
 }
 startServer()
+
+module.exports = api;
