@@ -9,7 +9,7 @@ const { ApolloServer } = require('apollo-server-express')
 const { request } = require('express')
 
 
-const api = express();
+const api  express();
 const startServer = async () => {
     const apollo = new ApolloServer(
         {
