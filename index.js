@@ -10,7 +10,7 @@ const { request } = require('express')
 
 
 const api = express();
-const startServer = async () => {
+const startServer  async () => {
     const apollo = new ApolloServer(
         {
             typeDefs,
