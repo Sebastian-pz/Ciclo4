@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtKey = "jwtKey";
+const jwtClave = "Estanoeslaclave123"
 
 const validateToken = (request, response, next) => {
     const token = request.headers['authorization']
@@ -35,8 +35,18 @@ const student = (request, response, next) => {
     return response.status(403).json({response:"Permisos insuficientes"})
 }
 
+
+const isAdmin = (role) => {
+    return role === 'Admin'
+}
+const isLeader = (role) => {
+    return role === 'Leader'
+}
+
 module.exports = {
     validateToken,
     admin,
-    student
+    student,
+    isAdmin,
+    isLeader
 }
