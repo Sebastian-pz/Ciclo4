@@ -8,7 +8,7 @@ const {
     resumeProject,
     addUserToProject,
     addprogress,
-    popLastProgress,
+    pullProgress,
     updateProject,
     getInactiveProjects,
     getActiveProjects,
@@ -79,12 +79,8 @@ const resolvers = {
                 resumeProject(args.title)
             }
         },
-        addprogress: async (parent, args, context, info) => {
-            if(isLeader(context.role)){
-                addprogress(args.id, args.progress)
-            }
-        },
-        popLastProgress: async (parent, args, context, info) => popLastProgress(args.id),
+        addprogress: async (parent, args, context, info) => addprogress(args.id, args.progress),
+        pullProgress: async (parent, args, context, info) => pullProgress(args.id, args.progress),
         updateProject: async (parent, args, context, info) => {
             if(isLeader(context.role)){
                 updateProject(args.id, args.newProjectData)

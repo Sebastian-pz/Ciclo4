@@ -80,9 +80,9 @@ const registerToProject = async (id, user) => {
     }
 }
 
-const popLastProgress = async (id) => {
+const pullProgress = async (id, progress) => {
     try {
-        const u = await Project.updateOne({id}, {$pop: {progress:1}})
+        const u = await Project.updateOne({id}, {$pull: {progress:progress}})
             .then(r => "Progreso deshecho")
     } catch (err) {
         return console.log(err)
@@ -118,7 +118,7 @@ module.exports = {
     resumeProject,
     addUserToProject,
     addprogress,
-    popLastProgress,
+    pullProgress,
     updateProject,
     getActiveProjects,
     getInactiveProjects,
