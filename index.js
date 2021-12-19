@@ -24,6 +24,9 @@ const startServer = async () => {
     api.get('/api/dashboard/student', [validateToken, student], (request, response) => {
         response.json("Soy el dashboard de estudiante")
     })
-    api.listen('3001', () => console.log('Server started'))
+    api.set('port', process.env.PORT || 3001);
+    api.listen(api.get('port'), () => {
+        console.log(`Server corriendo en el puerto ${api.get('port')}`)
+    })
 }
 startServer()
