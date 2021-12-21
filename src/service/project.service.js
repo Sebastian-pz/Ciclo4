@@ -62,9 +62,11 @@ const updateProject = async (id, newProjectData) => {
     }
 }
 
-const addprogress = async (id, progress) => {
+const addprogress = async (id, newProgress) => {
     try {
-        const u = await Project.updateOne({id}, {$push: {progress}})
+        console.log(id)
+        console.log(newProgress)
+        const u = await Project.updateOne({id}, {$push: {progress:{progress:newProgress.progress, author: newProgress.author, comment:newProgress.comment}}})
             .then(r => "Progreso añadido")
     } catch (err) {
         return console.log(err)

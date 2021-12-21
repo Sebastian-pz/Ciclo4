@@ -79,7 +79,7 @@ const resolvers = {
                 resumeProject(args.title)
             }
         },
-        addprogress: async (parent, args, context, info) => addprogress(args.id, args.progress),
+        addprogress: async (parent, args, context, info) => addprogress(args.id, args.newProgress),
         pullProgress: async (parent, args, context, info) => pullProgress(args.id, args.progress),
         updateProject: async (parent, args, context, info) => {
             if(isLeader(context.role)){

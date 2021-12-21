@@ -22,8 +22,9 @@ const project = new Schema({
         type:String
     },
     progress:[{
-        type:String,
-        default:["Inicio del proyecto",]
+        progress:String,
+        author:String,
+        comment:String
     }],
     budget:{
         type:Number

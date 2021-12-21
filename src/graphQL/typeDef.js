@@ -18,12 +18,17 @@ const typeDefs = gql`
         description:String
         general_objective:String
         specific_objectives:String
-        progress:[String]
+        progress:[projectProgress]
         leader:String
         members:[String]
         pending_approval:[String]
         isActive:Boolean
         _id:String
+    }
+    type projectProgress{
+        progress:String
+        author:String
+        comment:String
     }
 
     type Query{
@@ -60,6 +65,12 @@ const typeDefs = gql`
         status:Int
     }
 
+    input progressInput {
+        progress:String
+        author:String
+        comment:String
+    }
+
     input userUpdateInput{
         name:String
         email:String
@@ -85,7 +96,7 @@ const typeDefs = gql`
         stopProject(id:String):String
         resumeProject(title:String):String
         addUserToProject(id:String, title:String):String
-        addprogress(id:String, progress:String):String
+        addprogress(id:String, newProgress:progressInput):String
         pullProgress(id:String, progress:String):String
         activateProject(id:String):String
         registerToProject(id:String, user:String):String
